@@ -1,0 +1,197 @@
+
+
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm, mathtools, bm}
+
+\newtheorem{lema}{Lema}
+\newtheorem{prop}{Proposición}
+\newtheorem{obs}{Observación}
+
+\title{Demostración detallada de la fórmula de la base recíproca en $\mathbb{R}^3$}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Planteamiento}
+Sea $\{\mathbf e_1,\mathbf e_2,\mathbf e_3\}$ una base (no necesariamente ortogonal) de $\mathbb R^3$ con orientación derecha (dextrógira). 
+Se define la \emph{base recíproca} $\{\mathbf e^1,\mathbf e^2,\mathbf e^3\}$ como el conjunto de vectores que satisface
+\[
+\mathbf e^i \cdot \mathbf e_j \;=\; \delta^i_j,
+\qquad i,j\in\{1,2,3\}.
+\]
+Queremos demostrar que, para permutaciones cíclicas $(i,j,k)$ de $(1,2,3)$,
+\begin{equation}\label{eq:formula}
+\boxed{\;\mathbf e^i \;=\; \frac{\mathbf e_j \times \mathbf e_k}{\mathbf e_i \cdot (\mathbf e_j \times \mathbf e_k)}\;}.
+\end{equation}
+
+\section*{Preliminares (identidades básicas)}
+\begin{itemize}
+  \item \textbf{Producto cruz:} $\mathbf a\times \mathbf b$ es perpendicular a $\mathbf a$ y a $\mathbf b$, y 
+  $\|\mathbf a\times \mathbf b\|=\|\mathbf a\|\,\|\mathbf b\|\,\sin\angle(\mathbf a,\mathbf b)$.
+  \item \textbf{Triple producto escalar (cíclico):}
+  \[
+  \mathbf a\cdot(\mathbf b\times \mathbf c)\;=\;\mathbf b\cdot(\mathbf c\times \mathbf a)\;=\;\mathbf c\cdot(\mathbf a\times \mathbf b).
+  \]
+  Geométricamente es el volumen orientado del paralelepípedo formado por $\mathbf a,\mathbf b,\mathbf c$.
+  \item \textbf{No degeneración:} Como $\{\mathbf e_1,\mathbf e_2,\mathbf e_3\}$ es base, 
+  \[
+  V \;\coloneqq\; \mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)\;\neq\;0.
+  \]
+  Si la base es dextrógira, entonces $V>0$.
+\end{itemize}
+
+\section*{Demostración geométrica paso a paso}
+\subsection*{Paso 1: existencia (caso $i=1$)}
+Queremos $\mathbf e^1$ tal que
+\[
+\mathbf e^1\cdot \mathbf e_1=1,\qquad 
+\mathbf e^1\cdot \mathbf e_2=0,\qquad 
+\mathbf e^1\cdot \mathbf e_3=0.
+\]
+Las dos últimas igualdades dicen que $\mathbf e^1$ es perpendicular al plano $\operatorname{span}\{\mathbf e_2,\mathbf e_3\}$. 
+Un vector perpendicular a ese plano es $\mathbf e_2\times \mathbf e_3$. 
+Por tanto, existe $m\in\mathbb R$ tal que
+\begin{equation}\label{eq:ansatz}
+\mathbf e^1 \;=\; m\bigl(\mathbf e_2\times \mathbf e_3\bigr).
+\end{equation}
+Esta elección \emph{ya} garantiza $\mathbf e^1\cdot \mathbf e_2=0$ y $\mathbf e^1\cdot \mathbf e_3=0$.
+
+\subsection*{Paso 2: normalización}
+Imponemos $\mathbf e^1\cdot \mathbf e_1=1$. Usando \eqref{eq:ansatz}:
+\[
+1 \;=\; \mathbf e^1\cdot \mathbf e_1 
+\;=\; m\,(\mathbf e_2\times \mathbf e_3)\cdot \mathbf e_1
+\;=\; m\,\mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)
+\;=\; m\,V.
+\]
+Luego 
+\[
+m \;=\; \frac{1}{V}\;=\;\frac{1}{\mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)}.
+\]
+Sustituyendo en \eqref{eq:ansatz},
+\[
+\boxed{\;\mathbf e^1 \;=\; \frac{\mathbf e_2\times \mathbf e_3}{\mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)}\;}.
+\]
+
+\subsection*{Paso 3: verificación explícita}
+Con $V=\mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)$:
+\[
+\mathbf e^1\cdot \mathbf e_1 \;=\; \frac{(\mathbf e_2\times \mathbf e_3)\cdot \mathbf e_1}{V} \;=\; \frac{V}{V}\;=\;1,
+\]
+\[
+\mathbf e^1\cdot \mathbf e_2 \;=\; \frac{(\mathbf e_2\times \mathbf e_3)\cdot \mathbf e_2}{V} \;=\; 0,\qquad
+\mathbf e^1\cdot \mathbf e_3 \;=\; \frac{(\mathbf e_2\times \mathbf e_3)\cdot \mathbf e_3}{V} \;=\; 0,
+\]
+pues $\mathbf e_2\times \mathbf e_3$ es ortogonal a $\mathbf e_2$ y $\mathbf e_3$.
+
+\subsection*{Paso 4: casos $i=2$ e $i=3$}
+Por simetría cíclica de $(1,2,3)$ y por la propiedad cíclica del triple producto,
+\[
+\mathbf e^2 \;=\; \frac{\mathbf e_3\times \mathbf e_1}{\mathbf e_2\cdot(\mathbf e_3\times \mathbf e_1)}
+\;=\;\frac{\mathbf e_3\times \mathbf e_1}{V},\qquad
+\mathbf e^3 \;=\; \frac{\mathbf e_1\times \mathbf e_2}{\mathbf e_3\cdot(\mathbf e_1\times \mathbf e_2)}
+\;=\;\frac{\mathbf e_1\times \mathbf e_2}{V}.
+\]
+En ambos casos, el denominador vuelve a ser $V$ por la identidad cíclica. 
+Estas expresiones verifican 
+$\mathbf e^2\cdot \mathbf e_2=1$, $\mathbf e^2\cdot \mathbf e_1=\mathbf e^2\cdot \mathbf e_3=0$, 
+y análogamente para $\mathbf e^3$.
+
+\begin{obs}
+Si la base tuviera orientación izquierda (no dextrógira), $V<0$ y las fórmulas anteriores incorporan automáticamente el signo correcto a través de $V$.
+\end{obs}
+
+\section*{Demostración matricial (más algebraica)}
+Sea $E\in\mathbb R^{3\times 3}$ la matriz cuyas \emph{columnas} son los vectores de la base:
+\[
+E \;=\; \bigl[\;\mathbf e_1\ \ \mathbf e_2\ \ \mathbf e_3\;\bigr].
+\]
+Para cualquier $x\in\mathbb R^3$, su vector de coordenadas en la base es el que resuelve $E\,\alpha=x$. 
+La condición de base recíproca $\mathbf e^i\cdot \mathbf e_j=\delta^i_j$ equivale a decir que 
+\emph{las filas} de $E^{-1}$ son precisamente los covectores $\{\mathbf e^{1\top},\mathbf e^{2\top},\mathbf e^{3\top}\}$; es decir,
+\[
+E^{-1} \;=\; 
+\begin{bmatrix}
+\mathbf e^{1\top} \\[2pt]
+\mathbf e^{2\top} \\[2pt]
+\mathbf e^{3\top}
+\end{bmatrix}.
+\]
+Como $E$ es invertible, $E^{-T}=(E^{-1})^\top$ tiene por \emph{columnas} a los vectores $\{\mathbf e^1,\mathbf e^2,\mathbf e^3\}$:
+\[
+E^{-T} \;=\; \bigl[\;\mathbf e^1\ \ \mathbf e^2\ \ \mathbf e^3\;\bigr].
+\]
+Usando adjunta (adjugate), 
+\[
+E^{-T} \;=\; \frac{1}{\det E}\,\operatorname{adj}(E)^{\!T}.
+\]
+Pero para una matriz $E$ con columnas $\mathbf e_1,\mathbf e_2,\mathbf e_3$ se tiene la identidad clásica
+\[
+\operatorname{adj}(E) \;=\; 
+\bigl[\;\mathbf e_2\times \mathbf e_3\ \ \ \mathbf e_3\times \mathbf e_1\ \ \ \mathbf e_1\times \mathbf e_2\;\bigr],
+\]
+cuyas columnas son precisamente los \emph{cofactores vectoriales}. Además $\det E=\mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)=V$. 
+Por tanto,
+\[
+E^{-T} \;=\; \frac{1}{V}
+\bigl[\;\mathbf e_2\times \mathbf e_3\ \ \ \mathbf e_3\times \mathbf e_1\ \ \ \mathbf e_1\times \mathbf e_2\;\bigr],
+\]
+y leyendo columna a columna,
+\[
+\mathbf e^1=\frac{\mathbf e_2\times \mathbf e_3}{V},\quad
+\mathbf e^2=\frac{\mathbf e_3\times \mathbf e_1}{V},\quad
+\mathbf e^3=\frac{\mathbf e_1\times \mathbf e_2}{V},
+\]
+que coincide con \eqref{eq:formula}.
+
+\section*{Demostración en notación índice (opcional, muy detallada)}
+Sea $E=[e_{i\alpha}]$ con $i\in\{1,2,3\}$ indicando la columna (base) y $\alpha\in\{1,2,3\}$ la componente. 
+El símbolo de Levi-Civita $\varepsilon_{\alpha\beta\gamma}$ verifica:
+\[
+(\mathbf a\times \mathbf b)_\alpha \;=\; \sum_{\beta,\gamma}\varepsilon_{\alpha\beta\gamma}\,a_\beta b_\gamma,
+\qquad
+\mathbf a\cdot(\mathbf b\times \mathbf c) \;=\; \sum_{\alpha,\beta,\gamma}\varepsilon_{\alpha\beta\gamma}\,a_\alpha b_\beta c_\gamma.
+\]
+Definiendo 
+\[
+V \;=\; \sum_{\alpha,\beta,\gamma}\varepsilon_{\alpha\beta\gamma}\,e_{1\alpha}e_{2\beta}e_{3\gamma},
+\qquad
+(\mathbf e^1)_\alpha \;=\; \frac{1}{V}\sum_{\beta,\gamma}\varepsilon_{\alpha\beta\gamma}\,e_{2\beta}e_{3\gamma},
+\]
+se obtiene
+\[
+\mathbf e^1\cdot \mathbf e_1 
+\;=\; \sum_\alpha (\mathbf e^1)_\alpha e_{1\alpha}
+\;=\; \frac{1}{V}\sum_{\alpha,\beta,\gamma}\varepsilon_{\alpha\beta\gamma}\,e_{1\alpha}e_{2\beta}e_{3\gamma}
+\;=\; \frac{V}{V}\;=\;1,
+\]
+y, usando $\sum_\alpha \varepsilon_{\alpha\beta\gamma}e_{2\beta}e_{3\gamma}e_{2\alpha}=0$ (porque el determinante con dos columnas iguales es cero),
+\[
+\mathbf e^1\cdot \mathbf e_2 \;=\; 0,\qquad \mathbf e^1\cdot \mathbf e_3 \;=\; 0.
+\]
+Los casos $i=2,3$ son análogos. Por unicidad de la solución del sistema lineal $\bigl(\mathbf e^i\cdot \mathbf e_j=\delta^i_j\bigr)$, esta construcción da la base recíproca.
+
+\section*{Comprobaciones y casos límite}
+\begin{itemize}
+  \item \textbf{Base ortonormal:} Si $\mathbf e_i=\hat{\mathbf e}_i$ ortonormales y dextrógiros, entonces 
+  $\mathbf e_1\cdot(\mathbf e_2\times \mathbf e_3)=1$ y las fórmulas dan $\mathbf e^i=\mathbf e_i$, como debe ser.
+  \item \textbf{Escala y orientación:} Si se reescala $\mathbf e_i\mapsto \lambda_i\mathbf e_i$, entonces 
+  $V\mapsto \lambda_1\lambda_2\lambda_3 V$ y 
+  $\mathbf e_j\times \mathbf e_k \mapsto \lambda_j\lambda_k(\mathbf e_j\times \mathbf e_k)$; 
+  por tanto $\mathbf e^i \mapsto \dfrac{\lambda_j\lambda_k}{\lambda_1\lambda_2\lambda_3}\,\mathbf e^i=\dfrac{1}{\lambda_i}\,\mathbf e^i$, 
+  coherente con $\mathbf e^i\cdot \mathbf e_i=1$.
+\end{itemize}
+
+\section*{Conclusión}
+Hemos mostrado, con tres enfoques (geométrico, matricial y por índices), que la base recíproca de $\{\mathbf e_1,\mathbf e_2,\mathbf e_3\}$ en $\mathbb R^3$ viene dada por
+\[
+\mathbf e^i \;=\; \frac{\mathbf e_j \times \mathbf e_k}{\mathbf e_i \cdot (\mathbf e_j \times \mathbf e_k)},
+\qquad (i,j,k)\ \text{cíclico},
+\]
+y que ésta satisface exactamente $\mathbf e^i\cdot \mathbf e_j=\delta^i_j$.
+\end{document}
