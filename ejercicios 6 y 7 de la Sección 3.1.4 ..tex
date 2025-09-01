@@ -1,0 +1,359 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+
+% === Notación ===
+\newcommand{\e}{\mathbf e}   % vectores de la base (primal)
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\I}{\mathrm{i}} % i imaginaria
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{Bases recíprocas en $\mathbb{R}^3$ e Identidad de Pauli}\\[4pt]
+\large Incisos (b)--(d) en $\mathbb{R}^3$ y Punto 7 (Base dual de Pauli)
+\end{center}
+\bigskip
+
+\section*{Preliminares}
+Sea $\{\e_1,\e_2,\e_3\}$ una base (no necesariamente ortonormal) de $\mathbb R^3$ y 
+$\{\e^{\,1},\e^{\,2},\e^{\,3}\}$ su base recíproca, definida por
+\[
+\e^{\,i}\!\cdot \e_j=\delta^{i}{}_{j}\qquad (i,j=1,2,3).
+\]
+Definimos los volúmenes orientados
+\[
+V:=\e_1\!\cdot(\e_2\times \e_3), 
+\qquad 
+\tilde V:=\e^{\,1}\!\cdot(\e^{\,2}\times \e^{\,3}).
+\]
+En 3D (inciso a):
+\[
+\e^{\,1}=\frac{\e_2\times \e_3}{V},\qquad
+\e^{\,2}=\frac{\e_3\times \e_1}{V},\qquad
+\e^{\,3}=\frac{\e_1\times \e_2}{V},\qquad
+V=\e_1\!\cdot(\e_2\times \e_3)\neq 0.
+\]
+
+\section*{Inciso (b): demostrar que $V\,\tilde V=1$}
+
+\subsection*{Paso 1: calcular $\e^{\,2}\times \e^{\,3}$}
+Por bilinealidad del producto cruz,
+\[
+\e^{\,2}\times \e^{\,3}
+=\Big(\frac{\e_3\times \e_1}{V}\Big)\times
+ \Big(\frac{\e_1\times \e_2}{V}\Big)
+=\frac{1}{V^2}\,\big[(\e_3\times \e_1)\times (\e_1\times \e_2)\big].
+\]
+Usamos la identidad $x\times(y\times z)=y(x\!\cdot z)-z(x\!\cdot y)$ con 
+$x=\e_3\times \e_1$, $y=\e_1$, $z=\e_2$:
+\[
+(\e_3\times \e_1)\times (\e_1\times \e_2)
+= \e_1\big((\e_3\times \e_1)\!\cdot \e_2\big)
+     - \e_2\big((\e_3\times \e_1)\!\cdot \e_1\big).
+\]
+El segundo término es $0$ porque $(\e_3\times \e_1)\perp \e_1$. 
+En el primero, por ciclicidad del triple escalar,
+\[
+(\e_3\times \e_1)\!\cdot \e_2
+= \e_1\!\cdot(\e_2\times \e_3)=V.
+\]
+Por tanto,
+\[
+(\e_3\times \e_1)\times (\e_1\times \e_2)=V\,\e_1
+\quad\Rightarrow\quad
+\boxed{\ \e^{\,2}\times \e^{\,3}=\dfrac{\e_1}{V}\ }.
+\]
+
+\subsection*{Paso 2: calcular $\tilde V$ y concluir}
+Entonces
+\[
+\tilde V
+= \e^{\,1}\!\cdot(\e^{\,2}\times \e^{\,3})
+= \e^{\,1}\!\cdot\Big(\frac{\e_1}{V}\Big)
+= \frac{1}{V}\,(\e^{\,1}\!\cdot \e_1)
+= \frac{1}{V},
+\]
+ya que $\e^{\,1}\!\cdot \e_1=1$ por definición de base recíproca. 
+Finalmente,
+\[
+\boxed{\,V\,\tilde V=V\cdot \frac{1}{V}=1\,}.
+\]
+
+\bigskip
+\noindent\textbf{Observación.} Si la base $\{\e_i\}$ es dextrógira, entonces $V>0$ y también $\tilde V>0$.
+
+\section*{Inciso (c): hallar $a$ tal que $a\cdot \e^{\,i}=1$ ($i=1,2,3$) y demostrar unicidad}
+
+\subsection*{Paso 1: expandir $a$ en la base $\{\e_j\}$}
+Escribimos
+\[
+a=a^{j}\,\e_j \quad (\text{convención de suma sobre $j$}).
+\]
+Por bilinealidad del producto punto,
+\[
+a\cdot \e^{\,i}=(a^{j}\e_j)\cdot \e^{\,i}=a^{j}\,(\e_j\cdot \e^{\,i})
+=a^{j}\,\delta^{i}{}_{j}=a^{i}.
+\]
+\emph{Conclusión:} para todo $i$, se cumple
+\[
+a\cdot \e^{\,i}=a^{i}.
+\]
+
+\subsection*{Paso 2: imponer la condición $a\cdot \e^{\,i}=1$}
+Del paso anterior,
+\[
+a^{i}=1\quad\text{para } i=1,2,3.
+\]
+Por lo tanto,
+\[
+\boxed{\,a=\e_1+\e_2+\e_3\,}.
+\]
+
+\subsection*{Verificación}
+Usando $\e^{\,i}\!\cdot \e_j=\delta^{i}{}_{j}$,
+\[
+a\cdot \e^{\,1}=(\e_1+\e_2+\e_3)\cdot \e^{\,1}=1+0+0=1,
+\]
+y análogamente $a\cdot \e^{\,2}=1$ y $a\cdot \e^{\,3}=1$.
+
+\subsection*{Unicidad}
+Si $a$ y $b$ satisfacen $a\cdot \e^{\,i}=b\cdot \e^{\,i}=1$ ($i=1,2,3$), entonces
+\[
+(a-b)\cdot \e^{\,i}=0\quad (i=1,2,3).
+\]
+Pero $(a-b)\cdot \e^{\,i}=(a-b)^{i}$, de modo que 
+\[
+(a-b)^{1}=(a-b)^{2}=(a-b)^{3}=0 \;\Rightarrow\; a-b=0 \;\Rightarrow\; a=b.
+\]
+\[
+\boxed{\text{El vector } a \text{ es único.}}
+\]
+
+\section*{Inciso (d). Base recíproca y componentes de $a$ en un sistema oblicuo}
+
+Sean
+\[
+\e_1=(4,2,1),\qquad 
+\e_2=(3,3,0),\qquad 
+\e_3=(0,0,2),
+\]
+una base \emph{dextrógira} (no necesariamente ortogonal). Sea además $\mathbf a=(1,2,3)$.
+
+\subsection*{I) Cálculo de la base recíproca $\{\e^{\,i}\}$}
+
+La base recíproca $\{\e^{\,i}\}$ se define por
+\[
+\e^{\,i}\!\cdot \e_j=\delta^i{}_j\qquad (i,j=1,2,3).
+\]
+Para una base dextrógira, una construcción práctica es
+\[
+\boxed{\quad 
+\e^{\,i}=\dfrac{\e_j\times \e_k}{V},
+\qquad 
+V:=\e_1\cdot(\e_2\times \e_3),\quad (i,j,k)\ \text{cíclico}.
+\quad}
+\]
+
+\paragraph{Volumen escalar.}
+\[
+\e_2\times \e_3=
+\begin{vmatrix}
+\mathbf i& \mathbf j& \mathbf k\\
+3&3&0\\
+0&0&2
+\end{vmatrix}=(6,-6,0),
+\qquad
+V=\e_1\cdot(\e_2\times \e_3)=(4,2,1)\cdot(6,-6,0)=12.
+\]
+
+\paragraph{Vectores recíprocos.}
+Con permutaciones cíclicas:
+\[
+\begin{aligned}
+\e^{\,1}&=\frac{\e_2\times \e_3}{V}
+=\frac{(6,-6,0)}{12}=\Big(\tfrac12,-\tfrac12,0\Big),\\[2mm]
+\e^{\,2}&=\frac{\e_3\times \e_1}{V}
+=\frac{(-4,8,0)}{12}=\Big(-\tfrac13,\tfrac23,0\Big),\\[2mm]
+\e^{\,3}&=\frac{\e_1\times \e_2}{V}
+=\frac{(-3,3,6)}{12}=\Big(-\tfrac14,\tfrac14,\tfrac12\Big).
+\end{aligned}
+\]
+Se verifica que $\e^{\,i}\!\cdot \e_j=\delta^i{}_j$.
+
+\subsection*{II) Componentes covariantes y contravariantes de $\mathbf a=(1,2,3)$}
+
+En una base oblicua,
+\[
+\mathbf a=a^{\,i}\e_i=a_i\,\e^{\,i},
+\qquad
+a^{\,i}=\mathbf a\cdot \e^{\,i},\quad
+a_i=\mathbf a\cdot \e_i .
+\]
+
+\paragraph{Componentes contravariantes $a^{\,i}=\mathbf a\cdot \e^{\,i}$.}
+\[
+\begin{aligned}
+a^{\,1}&=(1,2,3)\cdot\Big(\tfrac12,-\tfrac12,0\Big)=\tfrac12-1=-\tfrac12,\\
+a^{\,2}&=(1,2,3)\cdot\Big(-\tfrac13,\tfrac23,0\Big)=-\tfrac13+\tfrac43=1,\\
+a^{\,3}&=(1,2,3)\cdot\Big(-\tfrac14,\tfrac14,\tfrac12\Big)=-\tfrac14+\tfrac12+\tfrac32=\tfrac74.
+\end{aligned}
+\]
+
+\paragraph{Componentes covariantes $a_i=\mathbf a\cdot \e_i$.}
+\[
+\begin{aligned}
+a_1&=(1,2,3)\cdot(4,2,1)=4+4+3=11,\\
+a_2&=(1,2,3)\cdot(3,3,0)=3+6+0=9,\\
+a_3&=(1,2,3)\cdot(0,0,2)=0+0+6=6.
+\end{aligned}
+\]
+
+\paragraph{Comprobación.}
+Ambas descomposiciones recuperan el mismo vector:
+\[
+\mathbf a
+= a^{\,i}\e_i=(-\tfrac12)\e_1+1\cdot \e_2+\tfrac74\,\e_3
+= a_i\,\e^{\,i}=11\,\e^{\,1}+9\,\e^{\,2}+6\,\e^{\,3}
+=(1,2,3).
+\]
+
+\subsection*{Observación (útil para el producto vectorial en base oblicua)}
+De la identidad
+\(
+\e_i\times \e_j=V\,\varepsilon_{ijk}\,\e^{\,k}
+\)
+se deduce, para $\mathbf a=a^{\,i}\e_i$ y $\mathbf b=b^{\,j}\e_j$,
+\[
+\boxed{\quad
+\mathbf a\times \mathbf b
+=V\,\varepsilon_{ijk}\,a^{\,i}b^{\,j}\,\e^{\,k},
+\qquad V=\e_1\cdot(\e_2\times \e_3)=12.
+\quad}
+\]
+
+% ----------------------------------------------------------------------
+\section*{Punto 7: Base dual asociada a la base de Pauli y 1-forma asociada}
+
+Sea $H_2$ el espacio \emph{real} de matrices herm\'iticas $2\times 2$, con el producto interno
+\[
+\langle A,B\rangle=\Tr(A^\dagger B).
+\]
+Como $A,B$ son herm\'iticas ($A^\dagger=A$, $B^\dagger=B$), aqu\'i $\langle A,B\rangle=\Tr(AB)$.
+Tomamos la base de Pauli
+\[
+\sigma_0=\begin{pmatrix}1&0\\[2pt]0&1\end{pmatrix},\quad
+\sigma_1=\begin{pmatrix}0&1\\[2pt]1&0\end{pmatrix},\quad
+\sigma_2=\begin{pmatrix}0&-\I\\[2pt]\I&0\end{pmatrix},\quad
+\sigma_3=\begin{pmatrix}1&0\\[2pt]0&-1\end{pmatrix}.
+\]
+
+\subsection*{1. Matriz de Gram de la base de Pauli}
+Definimos la matriz de Gram $G_{\mu\nu}=\langle\sigma_\mu,\sigma_\nu\rangle=\Tr(\sigma_\mu\sigma_\nu)$.
+Mostremos las identidades clave:
+\[
+\Tr(\sigma_0\sigma_0)=2,\qquad
+\Tr(\sigma_0\sigma_k)=0\ (k=1,2,3),\qquad
+\Tr(\sigma_i\sigma_j)=2\,\delta_{ij}\ (i,j=1,2,3).
+\]
+\paragraph{Esbozo de verificación.}
+(i) $\Tr(\sigma_0\sigma_0)=\Tr(I_2)=2$. \ 
+(ii) $\Tr(\sigma_0\sigma_k)=\Tr(\sigma_k)=0$ porque cada $\sigma_k$ (con $k=1,2,3$) es \emph{traceless}.\ 
+(iii) Para $i=j$, $\sigma_i^2=I_2\Rightarrow \Tr(\sigma_i\sigma_i)=2$; 
+para $i\neq j$, $\sigma_i\sigma_j=\I\varepsilon_{ijk}\sigma_k$ cuya traza es $0$. 
+En conjunto, $G_{\mu\nu}=2\,\delta_{\mu\nu}$, esto es
+\[
+G=2\,I_4, \qquad G^{-1}=\tfrac12\,I_4.
+\]
+La base de Pauli es ortogonal (no ortonormal): $\|\sigma_\mu\|^2=\Tr(\sigma_\mu^2)=2$.
+
+\subsection*{2. Base dual}
+Por definici\'on, la base dual $\{\sigma^\mu\}$ satisface
+$\langle\sigma^\mu,\sigma_\nu\rangle=\delta^\mu{}_\nu$.
+Si escribimos
+\(
+\sigma^\mu=\sum_{\rho=0}^3 c^{\mu}{}_{\rho}\,\sigma_\rho
+\)
+e imponemos la condici\'on dual, en notaci\'on matricial se obtiene $C\,G=I_4$,
+de modo que $C=G^{-1}$ y finalmente
+\[
+\boxed{\ \sigma^\mu=\tfrac12\,\sigma_\mu\qquad(\mu=0,1,2,3)\ }.
+\]
+Verificaci\'on directa:
+\(
+\langle\tfrac12\sigma_\mu,\sigma_\nu\rangle
+=\tfrac12\,\Tr(\sigma_\mu\sigma_\nu)
+=\tfrac12\cdot 2\,\delta_{\mu\nu}
+=\delta^\mu{}_\nu.
+\)
+
+\subsection*{3. 1-forma asociada y componentes}
+Todo $A\in H_2$ se expande de forma \'unica como
+\[
+A=a^\mu\,\sigma_\mu\qquad(\mu=0,1,2,3).
+\]
+Los \emph{coeficientes contravariantes} se recuperan aplicando la base dual:
+\[
+\boxed{\ a^\mu=\langle\sigma^\mu, A\rangle=\tfrac12\,\Tr(\sigma_\mu A)\ }.
+\]
+La 1-forma asociada a $A$ (también llamada “bemol” de $A$) es
+\[
+A^\flat(\cdot)=\langle A,\cdot\rangle=\Tr(A\,\cdot),
+\]
+y sus \emph{componentes covariantes} respecto a la co-base
+$\varepsilon^\mu(\,\cdot\,):=\langle\sigma^\mu,\,\cdot\,\rangle
+=\tfrac12\,\Tr(\sigma_\mu\,\cdot\,)$ son
+\[
+a_\mu:=\langle A,\sigma_\mu\rangle=\Tr(A\sigma_\mu)
+=G_{\mu\nu}\,a^\nu=2\,a^\mu.
+\]
+En resumen,
+\[
+\boxed{\ a_\mu=2\,a^\mu,\qquad
+A^\flat=\sum_{\mu=0}^3 a_\mu\,\varepsilon^\mu
+=\sum_{\mu=0}^3 (2a^\mu)\,\varepsilon^\mu\ }.
+\]
+
+\subsection*{4. Parámetros reales explícitos (opcional)}
+Si
+\[
+A=\alpha\,\sigma_0+\gamma\,\sigma_1+\delta\,\sigma_2+\beta\,\sigma_3
+=
+\begin{pmatrix}
+\alpha+\beta & \gamma-\I\delta\\[2pt]
+\gamma+\I\delta & \alpha-\beta
+\end{pmatrix},
+\]
+entonces
+\[
+a^0=\tfrac12\Tr(\sigma_0A)=\alpha,\quad
+a^1=\tfrac12\Tr(\sigma_1A)=\gamma,\quad
+a^2=\tfrac12\Tr(\sigma_2A)=\delta,\quad
+a^3=\tfrac12\Tr(\sigma_3A)=\beta,
+\]
+y $a_\mu=2a^\mu$. En particular, $A^\flat(X)=\Tr(AX)$ para todo $X\in H_2$.
+
+\subsection*{Anexo: comprobaciones matriciales básicas}
+Para completar, verificamos dos productos cruzados (las demás son análogas):
+\begin{align*}
+\sigma_2\sigma_3&=
+\begin{pmatrix}0&-\I\\ \I&0\end{pmatrix}
+\begin{pmatrix}1&0\\ 0&-1\end{pmatrix}
+=
+\begin{pmatrix}0&\I\\ \I&0\end{pmatrix}
+=\I\,\sigma_1,
+\\[2pt]
+\sigma_3\sigma_1&=
+\begin{pmatrix}1&0\\ 0&-1\end{pmatrix}
+\begin{pmatrix}0&1\\ 1&0\end{pmatrix}
+=
+\begin{pmatrix}0&1\\ -1&0\end{pmatrix}
+=-\I\,\sigma_2.
+\end{align*}
+En ambos casos, la traza es $0$ porque $\Tr(\sigma_k)=0$ para $k=1,2,3$.
+
+\end{document}
